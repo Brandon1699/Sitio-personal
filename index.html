@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="CV de Brandon Romero García - Especialista en gestión operativa financiera y análisis de información" />
+    <title>CV - Brandon Romero García</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            /* Colores ajustados para fondo blanco */
+            --background-color: #1E1E24; /* Gris oscuro para elementos internos (como el borde del botón) */
+            --text-color-primary: #333333; /* Gris oscuro para texto principal (casi negro) */
+            --text-color-secondary: #666666; /* Gris medio para texto secundario */
+            --accent-color: #4A0080; /* Púrpura más oscuro para acento (se mantiene para fondos de tarjetas de carrusel y algunos resaltes) */
+            --card-background: #f2f2f2; /* Este color ya no se usará tan directamente, pero se mantiene como referencia */
+            --modal-bg-fallback: #282838; /* Fondo de modal de respaldo (se usan los degradados para los modales) */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'SF Pro Display', sans-serif;
+            color: var(--text-color-primary);
+            line-height: 1.5;
+            font-size: 16px;
+            background-color: #ffffff; /* Fondo blanco sólido para el body */
+            background-attachment: scroll;
+            background-position: top;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+        }
+
+        /* Contenedor para el fondo negro inicial (header y hero) */
+        .initial-black-background {
+            background-color: #000000; /* Fondo negro sólido */
+            padding-top: 4.5rem; /* Espacio para el header fijo */
+            min-height: calc(4.5rem + 7rem + 4rem + 2rem);
+            position: relative;
+        }
+
+        header {
+            background: #000000; /* Negro sólido */
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px; /* Menos redondeado */
+            position: fixed; /* Header flotante */
+            top: 0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 1.5rem);
+            max-width: 1200px;
+            z-index: 1000;
+            box-shadow: none;
+            border: none;
+            backdrop-filter: blur(8px);
+        }
+        header h1 {
+            font-size: 1.5rem;
+            color: #ffffff; /* Nombre en blanco */
+            font-weight: 700;
+        }
+        nav a {
+            margin-left: 1.8rem;
+            text-decoration: none;
+            color: #ffffff; /* Texto de navegación en blanco para el header negro */
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.2s ease;
+            position: relative;
+            font-size: 1rem;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #ffffff; /* Línea de navegación en blanco */
+            left: 50%;
+            bottom: -5px;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        nav a:hover {
+            color: #d1d1d1; /* Un gris muy claro al pasar el ratón sobre el fondo negro */
+            transform: translateY(-2px);
+        }
+        nav a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 7rem 2rem 4rem;
+            background: none;
+            box-shadow: none;
+        }
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            color: #ffffff; /* Texto del hero en blanco para el fondo negro */
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(74, 0, 128, 0.4); /* Sombra morada para el acento */
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: #cccccc; /* Texto secundario en gris claro para el fondo negro */
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        .section {
+            padding: 5rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            background-color: transparent;
+        }
+        .section:not(:last-of-type)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 2px; /* Más gruesa */
+            background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2), transparent); /* Negro degradado */
+        }
+        .section h3 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: #000000; /* Títulos de sección en negro */
+            text-align: center;
+            position: relative;
+            padding-bottom: 0; /* Quitamos padding-bottom porque la línea ya no estará */
+        }
+        /* Eliminamos la línea debajo de los títulos de sección */
+        .section h3::after {
+            content: none;
+        }
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+        /* Estilos generales para los elementos de lista que reemplazan las tarjetas */
+        .section li {
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            background: none; /* Quitamos el fondo */
+            padding: 0.5rem 0; /* Padding más discreto */
+            border-radius: 0; /* Quitamos el border-radius */
+            box-shadow: none; /* Quitamos la sombra */
+            /* ELIMINADO: Transición de fondo para listas (no de tarjetas de experiencia) */
+            /* transition: background-color 0.3s ease; */
+            border: none; /* Quitamos el borde */
+        }
+        /* ELIMINADO: Animación de la línea al pasar el cursor en la lista de habilidades y educación */
+        .section li:hover {
+            transform: none;
+            box-shadow: none;
+            background-color: transparent; /* Fondo transparente al pasar el ratón */
+            border-radius: 0; /* Sin redondeado al hover */
+        }
+        .section li strong {
+                color: #000000; /* Texto fuerte en listas en negro */
+        }
+
+        /* Timeline Experience Styles */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin-top: 2.5rem;
+        }
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 18px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: #000000; /* Línea de tiempo en negro */
+            border-radius: 1px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.8rem;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        /* Eliminamos el círculo del timeline-item */
+        .timeline-item::before {
+            content: none;
+        }
+
+        .timeline-card {
+            background-image: none; /* ELIMINADO: Degradado radial */
+            background-color: #ffffff; /* MISMO COLOR DEL FONDO */
+            border-radius: 16px; /* Mantenemos un poco de redondeo, puedes quitarlo si quieres */
+            padding: 2rem; /* Aumentamos el padding para dar espacio al logo desde el borde */
+            box-shadow: none; /* ELIMINADO: Sombra suave */
+            transition: none; /* ELIMINADO: Transición al pasar el cursor */
+            border: none; /* ELIMINAMOS EL BORDE SÓLIDO */
+            position: relative; /* Necesario para la pseudo-clase del borde degradado y para el logo */
+            overflow: hidden; /* Asegura que el gradiente de borde se recorte correctamente */
+            min-height: 200px; /* Asegura un alto mínimo para las tarjetas */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* Pseudo-elemento para el borde degradado - ELIMINADO */
+        .timeline-card::before {
+            content: none; /* ELIMINADO: Borde degradado */
+        }
+
+        .timeline-card:hover {
+            transform: none; /* ELIMINADO: Transformación al pasar el ratón */
+            box-shadow: none; /* ELIMINADO: Sombra al pasar el ratón */
+            background-color: #ffffff; /* MISMO COLOR DEL FONDO, sin cambio al hover */
+        }
+
+        /* Estilos base para el logo de la empresa */
+        .company-logo {
+            position: absolute;
+            right: 25px; /* Margen de 25px desde el borde derecho */
+            bottom: 25px; /* Margen de 25px desde el borde inferior */
+            width: 60px; /* Tamaño base del logo */
+            height: 60px; /* Tamaño base del logo */
+            z-index: 3; /* Asegura que esté por encima del borde degradado */
+        }
+
+        /* Tamaños específicos para logos */
+        .company-logo.finniu-logo,
+        .company-logo.bcp-logo { /* APLICADO A AMBOS LOGOS */
+            width: 120px; /* Doble de grande */
+            height: 120px; /* Doble de grande */
+            right: 25px;
+            bottom: 25px;
+        }
+
+        .company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ajusta la imagen dentro del contenedor */
+            border-radius: 5px; /* Pequeño redondeado para el logo */
+        }
+
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between; /* Alinea los elementos a los extremos */
+            align-items: flex-start; /* Alinea los elementos al inicio (arriba) */
+            margin-bottom: 0.8rem;
+            color: var(--text-color-secondary);
+            font-size: 0.9rem;
+            flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+        }
+        .timeline-header .date {
+            order: 2; /* Mueve la fecha a la segunda posición en el orden flex */
+            font-size: 0.85rem;
+            color: var(--text-color-secondary);
+            margin-left: auto; /* Empuja la fecha a la derecha */
+        }
+        .timeline-header .company {
+            order: 1; /* Mantiene la compañía en la primera posición */
+            font-weight: 600;
+            color: #000000; /* Nombre de la empresa en negro */
+            font-size: 1.1rem;
+        }
+
+        .position {
+            font-size: 1.6rem;
+            margin-bottom: 1rem; /* Reducido para compactar */
+            color: var(--text-color-primary); /* Se mantiene como text-color-primary (gris oscuro) */
+            font-weight: 600;
+        }
+        .responsibilities {
+            padding-left: 0; /* Quitamos el padding del UL */
+            margin-bottom: 0; /* Eliminar margen inferior */
+            list-style: none; /* Aseguramos que la lista no tenga estilos por defecto */
+        }
+
+        .responsibilities li {
+            position: relative;
+            /* El padding-left aquí alinea la viñeta y el texto con el .position */
+            padding-left: 1.8rem; /* Ajuste para alinear las viñetas con el subtítulo */
+            margin-bottom: 0.3rem; /* REDUCIDO EN UN 40% (0.5rem * 0.5 = 0.25rem) */
+            line-height: 1.2; /* REDUCIDO EL INTERLINEADO */
+            color: var(--text-color-primary);
+            background: transparent;
+            box-shadow: none;
+            padding-top: 0; /* Aseguramos que no haya padding vertical inesperado */
+            padding-bottom: 0;
+            transition: none;
+            font-size: 0.95rem;
+            border: none;
+        }
+        /* Añadimos la viñeta personalizada */
+        .responsibilities li::before {
+            content: '•'; /* El carácter de la viñeta */
+            position: absolute;
+            left: 0; /* Posicionamos la viñeta al inicio del padding-left */
+            top: 0;
+            color: #333333; /* Color de la viñeta */
+            font-weight: bold;
+            font-size: 1.1em; /* Tamaño de la viñeta */
+            line-height: inherit; /* Hereda el line-height del padre para alinear verticalmente */
+        }
+
+
+        /* Removimos grid para que sea una sola columna */
+        .responsibility-columns {
+            display: block; /* Vuelve a ser un bloque normal */
+        }
+
+        /* Media query para dos columnas en pantallas más grandes - YA NO APLICA */
+        @media (min-width: 769px) {
+            .timeline-card {
+                min-height: 200px; /* Volver al alto original, ya no necesitamos más por 2 columnas */
+            }
+        }
+
+
+        /* Botón "Ver más experiencias" */
+        #more-experience-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+        #more-experience-container.visible {
+            max-height: 2000px;
+        }
+        .toggle-experience-btn {
+            display: block;
+            margin: 3rem auto 0;
+            padding: 0.9rem 2rem;
+            font-family: 'SF Pro Display', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #000000; /* Texto del botón en negro */
+            background-color: transparent;
+            border: 1px solid #000000; /* Borde del botón en negro */
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra suave */
+        }
+        .toggle-experience-btn:hover {
+            background-color: #000000; /* Fondo del botón al pasar el ratón en negro */
+            color: #ffffff; /* Texto blanco al pasar el ratón */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra al pasar el ratón */
+            transform: translateY(-2px);
+        }
+
+        /* Carrusel Styles */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            padding: 2rem 0;
+            margin: 0 auto;
+        }
+
+        .carousel {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem 3rem;
+            scroll-behavior: smooth;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 1rem;
+        }
+        .carousel::-webkit-scrollbar { display: none; }
+
+        .carousel-item {
+            flex: 0 0 320px;
+            height: 400px;
+            border-radius: 24px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            scroll-snap-align: start;
+            padding: 2rem;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            background-size: 300% 300%;
+            animation: radial-gradient-shift 10s ease infinite alternate; /* VELOCIDAD DE ANIMACIÓN DEGRADADO AJUSTADA */
+            border: 1px solid #e0e0e0;
+        }
+
+        @keyframes radial-gradient-shift {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .carousel-item:nth-child(1) { background-image: radial-gradient(circle at center, #662834 0%, #3c1957 75%); color: #fff; }
+        .carousel-item:nth-child(1) h4, .carousel-item:nth-child(1) p { color: #fff; }
+        .carousel-item:nth-child(2) { background-image: radial-gradient(circle at center, #5a12d5 0%, #42b8d1 75%); color: #fff; }
+        .carousel-item:nth-child(2) h4, .carousel-item:nth-child(2) p { color: #fff; }
+        .carousel-item:nth-child(3) { background-image: radial-gradient(circle at center, #1c2536 0%, #3957ed 75%); color: #fff; }
+        .carousel-item:nth-child(3) h4, .carousel-item:nth-child(3) p { color: #fff; }
+
+        .carousel-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .carousel-item h4 {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        .carousel-item p {
+            font-size: 1.8rem;
+            line-height: 1.3;
+            font-weight: 600;
+            margin-top: auto;
+            padding-bottom: 1rem;
+        }
+
+        /* Nuevo icono circular con "+" en tarjetas de proyectos */
+        .carousel-item .plus-icon-circle {
+            position: absolute;
+            bottom: 1.5rem; /* Ajustado para que esté un poco más arriba */
+            right: 1.5rem; /* Ajustado para que esté un poco más a la izquierda */
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.15); /* Blanco translúcido */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-item .plus-icon-circle:hover {
+            background-color: rgba(255, 255, 255, 0.25); /* Más opaco al pasar el ratón */
+        }
+
+        .carousel-item .plus-icon-circle svg {
+            width: 24px;
+            height: 24px;
+            stroke: #fff; /* Signo de más blanco */
+            stroke-width: 2.5;
+        }
+
+
+        /* Modal/Popup */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(15px);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0.5s;
+            will-change: opacity;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--modal-bg-fallback);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            width: 90%;
+            max-width: 700px;
+            height: auto;
+            min-height: 0;
+            overflow: hidden;
+            padding: 0;
+            position: relative;
+            transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        background 0.5s ease-in-out,
+                        opacity 0.3s ease;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.15);
+            max-height: 85vh;
+            will-change: transform, opacity;
+            color: #fff;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+            padding: 2.5rem;
+            min-height: 550px;
+            overflow-y: auto;
+        }
+
+        /* Estilos de fondo para el modal según el índice del proyecto (mantienen los degradados) */
+        .modal-content.gradient-0 { background: linear-gradient(to bottom right, #662834, #3c1957); }
+        .modal-content.gradient-0 .modal-title, .modal-content.gradient-0 .modal-description, .modal-content.gradient-0 .modal-details p { color: #fff; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }
+        .modal-content.gradient-0 .modal-details h5, .modal-content.gradient-0 .modal-details li::before { color: rgba(255, 255, 255, 0.8); }
+
+        .modal-content.gradient-1 { background: linear-gradient(to bottom right, #5a12d5, #42b8d1); }
+        .modal-content.gradient-1 .modal-title, .modal-content.gradient-1 .modal-description, .modal-content.gradient-1 .modal-details p { color: #fff; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }
+        .modal-content.gradient-1 .modal-details h5, .modal-content.gradient-1 .modal-details li::before { color: rgba(255, 255, 255, 0.8); }
+
+        .modal-content.gradient-2 { background: linear-gradient(to bottom right, #1c2536, #3957ed); }
+        .modal-content.gradient-2 .modal-title, .modal-content.gradient-2 .modal-description, .modal-content.gradient-2 .modal-details p { color: #fff; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }
+        .modal-content.gradient-2 .modal-details h5, .modal-content.gradient-2 .modal-details li::before { color: rgba(255, 255, 255, 0.8); }
+
+        .modal-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.6);
+            transition: color 0.3s ease, transform 0.2s ease;
+            z-index: 2;
+        }
+
+        .modal-close:hover {
+            color: #fff;
+            transform: rotate(90deg) scale(1.05);
+        }
+
+        .modal-title {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            margin-bottom: 2rem;
+        }
+
+        .modal-details {
+            margin-top: 2rem;
+        }
+
+        .modal-details h5 {
+            font-size: 1.3rem;
+            color: #ffffff; /* Títulos dentro del modal en blanco (para contraste con el degradado) */
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .modal-details ul {
+            list-style-type: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-details li {
+            margin-bottom: 0.7rem;
+            position: relative;
+            padding-left: 1.6rem;
+            color: #e0e0e0;
+            background: transparent;
+            box-shadow: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .modal-details li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #ffffff; /* Puntos de lista dentro del modal en blanco */
+            font-weight: bold;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .modal-image-container {
+            margin-top: 3rem;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 1.5rem;
+        }
+        .modal-image-container img {
+            max-width: 250px;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: none; /* ELIMINADO: Sombra de la imagen en el modal */
+            transition: transform 0.3s ease;
+        }
+        .modal-image-container img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Controles de navegación DENTRO del modal-overlay, pero posicionados con respecto al modal-content */
+        .modal-nav-btn {
+            position: fixed; /* Cambiado a fixed */
+            top: 50%; /* Centrado verticalmente en el viewport */
+            transform: translateY(-50%);
+            background: rgba(32, 32, 42, 0.9); /* Fondo oscuro translúcido */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08); /* Borde blanco muy sutil */
+            width: 50px; /* Tamaño del botón */
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease;
+            color: #ffffff; /* Color del icono blanco */
+            z-index: 1001; /* Asegura que estén por encima del modal */
+        }
+
+        .modal-nav-btn.prev {
+            left: 50%; /* Empezamos desde el centro */
+            /* Este margen left se ajustará con JavaScript */
+            margin-left: -385px; /* Valor de respaldo, se ajustará con JS: -(max-width/2 + button_width/2 + gap) = -(700/2 + 50/2 + 10) = -(350+25+10) = -385px */
+        }
+
+        .modal-nav-btn.next {
+            right: 50%; /* Empezamos desde el centro */
+            /* Este margen right se ajustará con JavaScript */
+            margin-right: -385px; /* Valor de respaldo, se ajustará con JS */
+        }
+
+        .modal-nav-btn:hover {
+            background: #ffffff; /* Fondo blanco al pasar el ratón */
+            transform: translateY(-50%) scale(1.06); /* Mantiene centrado verticalmente y escala */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            border-color: rgba(0, 0, 0, 0.1); /* Borde sutil al hover */
+        }
+        .modal-nav-btn:hover svg {
+            stroke: var(--accent-color); /* Cambiar el color del SVG al color de acento al pasar el ratón */
+        }
+
+        .modal-nav-btn svg {
+            stroke: #ffffff;
+            stroke-width: 2;
+            width: 26px; /* Tamaño del SVG */
+            height: 26px;
+            transition: stroke 0.3s ease;
+        }
+
+
+        /* Contacto y Referencias - Nuevos estilos sin "tarjetas" */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3.5rem;
+        }
+        .contact-card {
+            background: none; /* Quitamos el fondo */
+            padding: 1rem; /* Reducimos el padding */
+            border-radius: 0; /* Quitamos el redondeado */
+            box-shadow: none; /* Quitamos la sombra */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: background-color 0.3s ease; /* Solo transición de fondo */
+            border: 1px solid #e0e0e0; /* Borde sutil */
+            border-radius: 10px; /* Un pequeño redondeado para el borde */
+        }
+        .contact-card:hover {
+            transform: none; /* Quitamos la transformación */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra muy sutil al hover */
+            background-color: #f8f8f8; /* Fondo sutil al pasar el ratón */
+            border-color: #cccccc; /* Ligeramente más oscuro al pasar el ratón */
+        }
+        .contact-card svg {
+            width: 45px;
+            height: 45px;
+            margin-bottom: 1.2rem;
+            color: #000000; /* Iconos de contacto en negro */
+        }
+        .contact-card a {
+            color: var(--text-color-primary); /* Texto oscuro para enlace */
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .contact-card a:hover {
+            color: #000000; /* Enlaces de contacto al pasar el ratón en negro */
+        }
+        .contact-card p {
+            font-size: 0.9rem;
+            color: var(--text-color-secondary);
+            margin-top: 0.6rem;
+        }
+
+        .references-section {
+            margin-top: 4rem;
+        }
+        .references-section h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #000000; /* Título de referencias en negro */
+            text-align: center;
+        }
+        .references-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding-left: 0;
+        }
+        .references-list li {
+            background: none; /* Quitamos el fondo de tarjeta */
+            padding: 1rem; /* Ajustamos padding */
+            border-radius: 0; /* Quitamos redondeado */
+            box-shadow: none; /* Quitamos sombra */
+            font-size: 1rem;
+            line-height: 1.5;
+            border: 1px solid #e0e0e0; /* Borde sutil */
+            border-radius: 10px; /* Un pequeño redondeado para el borde */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transición solo para el fondo y sombra */
+        }
+        .references-list li:hover {
+            transform: none; /* Quitamos la transformación */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra sutil al hover */
+            background-color: #f8f8f8; /* Fondo sutil al pasar el ratón */
+        }
+        .references-list strong {
+            display: block;
+            font-weight: 600;
+            color: var(--text-color-primary);
+            margin-bottom: 0.25rem;
+            font-size: 1.05rem;
+        }
+        .references-list span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-color-secondary);
+            margin-bottom: 0.25rem;
+        }
+        .references-list a {
+            color: #000000; /* Enlaces de referencias en negro */
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .references-list a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #000000; /* Fondo negro para el pie de página */
+            color: #cccccc; /* Texto en gris claro para el pie de página negro */
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 2rem; /* REDUCIDO: Ajustado para que no esté demasiado alto */
+        }
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Estilos para los nuevos botones de contacto flotantes */
+        .floating-buttons-container {
+            position: fixed;
+            bottom: 20px; /* Separación desde la parte inferior */
+            right: 20px; /* Separación desde la parte derecha */
+            z-index: 1000; /* Asegura que estén por encima de todo */
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Espacio entre los botones */
+        }
+
+        .floating-btn {
+            background-color: #000000; /* Fondo negro */
+            color: #ffffff; /* Color del texto (afecta al fill/stroke de los SVGs con currentColor) */
+            border: none;
+            border-radius: 50%; /* Botones redondos */
+            width: 55px; /* Tamaño del botón */
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+            transition: all 0.3s ease;
+            text-decoration: none; /* Quita el subrayado de los enlaces */
+        }
+
+        .floating-btn:hover {
+            background-color: #333333; /* Un gris más oscuro al pasar el ratón */
+            transform: translateY(-3px); /* Pequeño desplazamiento hacia arriba */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Sombra al pasar el ratón */
+        }
+
+        /* Estilos para los iconos SVG dentro de los botones flotantes */
+        .floating-btn svg {
+            width: 32px; /* Tamaño común para ambos SVGs */
+            height: 32px;
+            fill: currentColor; /* Asegura que tome el color del botón por defecto */
+            stroke: none; /* Por defecto, sin trazo para estos iconos */
+            transition: fill 0.3s ease; /* Transición solo para el color de relleno */
+        }
+
+        /* Hover específico para el icono de Teléfono (que ahora va a WhatsApp) */
+        .floating-btn.phone-btn:hover svg {
+            fill: #25D366; /* Color verde WhatsApp al pasar el ratón */
+        }
+
+        /* El botón de email NO cambia de color al pasar el ratón */
+        .floating-btn.email-btn:hover svg {
+            fill: currentColor; /* Mantiene el color actual (blanco) */
+        }
+
+
+        /* Estilos para el mensaje de copiado de correo */
+        .copy-message {
+            position: fixed;
+            /* Alineado al lado izquierdo del botón flotante de correo */
+            bottom: calc(20px + 55px / 2 - 19.5px); /* Alinea el centro del mensaje con el centro del botón */
+            right: calc(20px + 55px + 15px); /* Posiciona a la izquierda del stack de botones + gap */
+            background-color: #333333; /* Fondo oscuro */
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(20px); /* Inicialmente a la derecha para animar desde ahí */
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+            z-index: 1001;
+        }
+
+        .copy-message.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0); /* Desplazamiento a la izquierda */
+        }
+
+        .copy-message .check-icon {
+            width: 20px;
+            height: 20px;
+            fill: #4CAF50; /* Verde para el check */
+        }
+
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            html, body {
+                font-size: 15px;
+            }
+            .initial-black-background {
+                min-height: calc(3.5rem + 4rem + 2.5rem + 1rem);
+            }
+            header {
+                flex-direction: column;
+                padding: 0.8rem 1rem;
+                top: 0.5rem;
+                width: calc(100% - 1rem);
+                border-radius: 8px; /* Menos redondeado en móvil también */
+            }
+            header h1 {
+                margin-bottom: 0.8rem;
+                font-size: 1.3rem;
+            }
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav a {
+                margin: 0.4rem 0.6rem;
+                font-size: 0.85rem;
+            }
+            .hero {
+                padding: 4rem 1rem 2.5rem;
+            }
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+            }
+            .section {
+                padding: 3rem 1rem;
+            }
+            .section h3 {
+                font-size: 1.8rem;
+            }
+            .timeline {
+                padding-left: 20px;
+            }
+            .timeline:before {
+                left: 8px;
+            }
+            /* Asegurarse de que no haya círculo para cada item en móvil tampoco */
+            .timeline-item:before {
+                content: none;
+            }
+
+            .timeline-card {
+                padding: 1.2rem; /* Ajuste para móvil */
+                min-height: 180px; /* Ajuste para móvil, puede que necesite más por 2 columnas */
+            }
+            /* Ajuste para logos en móvil */
+            .company-logo {
+                width: 45px;
+                height: 45px;
+                right: 15px; /* Ajuste para móvil */
+                bottom: 15px; /* Ajuste para móvil */
+            }
+            .company-logo.finniu-logo,
+            .company-logo.bcp-logo { /* Aplicado a ambos logos en móvil */
+                width: 90px; /* Doble de grande para móvil */
+                height: 90px; /* Doble de grande para móvil */
+                right: 15px; /* Ajuste para móvil */
+                bottom: 15px; /* Ajuste para móvil */
+            }
+            .position {
+                font-size: 1.3rem;
+            }
+            .responsibilities {
+                padding-left: 0; /* Aseguramos que no haya padding en el UL */
+            }
+            .responsibilities li {
+                padding-left: 1.8rem; /* Ajustado para alinear las viñetas con el subtítulo en móvil */
+                font-size: 0.85rem; /* Ligeramente más pequeño para evitar saltos en móvil */
+                margin-bottom: 0.3rem; /* REDUCIDO EN UN 40% (0.5rem * 0.6 = 0.3rem) */
+                line-height: 1.2; /* REDUCIDO EL INTERLINEADO */
+            }
+            .toggle-experience-btn {
+                padding: 0.8rem 1.8rem;
+                font-size: 0.9rem;
+            }
+            .carousel {
+                padding: 1.5rem 1rem;
+            }
+            .carousel-item {
+                flex: 0 0 90vw;
+                height: 320px;
+            }
+            .carousel-item p {
+                font-size: 1.5rem;
+            }
+            .carousel-item .plus-icon-circle {
+                width: 32px;
+                height: 32px;
+                bottom: 1rem;
+                right: 1rem;
+            }
+            .carousel-item .plus-icon-circle svg {
+                width: 18px;
+                height: 18px;
+            }
+            .modal-content {
+                padding: 1.8rem 1rem;
+                width: 95%;
+                min-height: 450px;
+            }
+            .modal-title {
+                font-size: 1.6rem;
+            }
+            .modal-description {
+                font-size: 1rem;
+            }
+            .modal-details h5 {
+                font-size: 1.1rem;
+            }
+            .modal-details li {
+                font-size: 0.9rem;
+            }
+            .modal-image-container {
+                margin-top: 2.5rem;
+            }
+            .modal-image-container img {
+                max-width: 180px;
+            }
+            /* Controles de navegación en modal para móvil */
+            .modal-nav-btn {
+                width: 40px;
+                height: 40px;
+                /* Ajuste para móviles para que estén al lado del modal-content */
+                /* Estos valores se ajustarán con JavaScript en tiempo real */
+                margin-left: -50px; /* Valor de respaldo para móvil */
+                margin-right: -50px; /* Valor de respaldo para móvil */
+            }
+            .modal-nav-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+            .contact-card {
+                padding: 1rem; /* Ajustado para móvil */
+            }
+            .contact-card svg {
+                width: 35px;
+                height: 35px;
+            }
+            .contact-card a {
+                font-size: 1rem;
+            }
+            .references-list li {
+                padding: 1rem;
+                font-size: 0.95rem;
+            }
+            .references-list strong {
+                font-size: 1rem;
+            }
+
+            /* Ajuste para los botones flotantes en móvil */
+            .floating-buttons-container {
+                bottom: 15px;
+                right: 15px;
+                gap: 10px;
+            }
+            .floating-btn {
+                width: 45px;
+                height: 45px;
+            }
+            .floating-btn svg { /* Ambos iconos */
+                width: 26px; /* Ajusta el tamaño del SVG */
+                height: 26px;
+            }
+            footer {
+                padding-bottom: 2rem; /* Ajuste de padding del footer para móvil */
+            }
+            .copy-message {
+                /* Ajuste de cálculo para móvil */
+                bottom: calc(15px + 45px / 2 - 19.5px);
+                right: calc(15px + 45px + 10px);
+                font-size: 0.8em;
+            }
+            .copy-message .check-icon {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="initial-black-background">
+        <header>
+            <h1>Brandon Romero García</h1>
+            <nav>
+                <a href="#about">Sobre mí</a>
+                <a href="#experience">Experiencia</a>
+                <a href="#projects">Proyectos</a>
+                <a href="#education">Educación</a>
+                <a href="#skills">Habilidades</a>
+                <a href="#contact">Contacto</a> </nav>
+        </header>
+
+        <section class="hero">
+            <h2>Hola, soy Brandon Romero García</h2>
+            <p>Especialista en gestión operativa financiera, análisis de datos y automatización de procesos.</p>
+        </section>
+    </div>
+
+    <section class="section" id="about">
+        <h3>Sobre mí</h3>
+        <p>Especialista en gestión operativa financiera y análisis de información para la toma de decisiones en entornos financieros regulados (BCP y FINNIU). Con experiencia en administración de contratos crediticios, validación documental, análisis de operaciones financieras, evaluación de riesgos y optimización de procesos. Destaco por mi capacidad para identificar áreas de mejora, proponer soluciones efectivas y comunicar ideas de manera clara y asertiva. Cuento con especialización en Data Analytics, que abarca Power BI, Excel, SQL, entre otras herramientas.</p>
+    </section>
+
+    <section class="section" id="experience">
+        <h3>Experiencia Profesional</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <span class="company">FINNIU</span>
+                        <span class="date">Febrero 2025 - Marzo 2025</span>
+                    </div>
+                    <h4 class="position">Analista en automatizaciones y procesos</h4>
+                    <ul class="responsibilities">
+                        <li>Evalué riesgos y viabilidad financiera de solicitudes de inversión.</li>
+                        <li>Verifiqué información financiera y legal de clientes para aprobaciones ágiles.</li>
+                        <li>Implementé CRM Sendpulse y configuré chatbots para el área comercial.</li>
+                        <li>Diseñé soluciones automatizadas para procesos administrativos, aumentando la eficiencia.</li>
+                        <li>Optimizé el uso de Darwin AI como canal de contacto inicial.</li>
+                        <li>Desarrollé dashboards y reportes en SQL (Metabase) para métricas clave.</li>
+                        <li>Gestioné consultas y reclamos de clientes internos y externos.</li>
+                        <li>Identifiqué riesgos y oportunidades mediante análisis de datos para mejora continua.</li>
+                    </ul>
+                    <div class="company-logo finniu-logo">
+                        <img src="flogo.svg" alt="FINNIU Logo">
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <span class="company">FINNIU</span>
+                        <span class="date">Agosto 2024 - Febrero 2025</span>
+                    </div>
+                    <h4 class="position">Practicante Comercial (Revenue y producto)</h4>
+                    <ul class="responsibilities">
+                        <li>Evalué riesgos y viabilidad financiera de solicitudes de inversión.</li>
+                        <li>Analicé, implementé y mejoré Darwin AI para optimizar el contacto inicial.</li>
+                        <li>Creé y configuré cupones para campañas.</li>
+                        <li>Identifiqué tendencias y riesgos financieros mediante análisis de datos de inversionistas.</li>
+                        <li>Registré y actualicé la base de datos de Leads en SQL.</li>
+                        <li>Atendí consultas y resolvió incidencias vía correo y sistema de tickets.</li>
+                        <li>Gestioné la entrega completa de contratos y cheques.</li>
+                        <li>Desarrollé dashboards y reportes en SQL (Metabase) para medir KPIs comerciales.</li>
+                    </ul>
+                    <div class="company-logo finniu-logo">
+                        <img src="flogo.svg" alt="FINNIU Logo">
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <span class="company">BANCO DE CRÉDITO DEL PERÚ</span>
+                        <span class="date">Julio 2023 - Junio 2024</span>
+                    </div>
+                    <h4 class="position">Fiscal de Operaciones</h4>
+                    <ul class="responsibilities">
+                        <li>Realicé desembolsos de Crédito Efectivo y Vehicular, asegurando cumplimiento.</li>
+                        <li>Gestioné documentos y firmas electrónicas con sistemas (SMEX, EXTRA, Salesforce).</li>
+                        <li>Aprobó ampliaciones de línea de crédito y upgrades, validando condiciones.</li>
+                        <li>Monitoreé solicitudes aceptadas y operaciones activadas.</li>
+                        <li>Elaboré reportes de cierre y ventas a Gerencia sobre productividad.</li>
+                        <li>Reportó diariamente tiempos de atención para optimizar procesos.</li>
+                    </ul>
+                    <div class="company-logo bcp-logo">
+                        <img src="blogo.svg" alt="BCP Logo">
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-card">
+                    <div class="timeline-header">
+                        <span class="company">BANCO DE CRÉDITO DEL PERÚ</span>
+                        <span class="date">Enero 2023 - Julio 2023</span>
+                    </div>
+                    <h4 class="position">Asistente de Operaciones</h4>
+                    <ul class="responsibilities">
+                        <li>Validé y aprobé cambios de tasas y PCT's en SMEX.</li>
+                        <li>Aprobé solicitudes de mejora de tasas, validando cronogramas e ingresos.</li>
+                        <li>Gestioné casos complejos, coordinando con equipos internos y externos.</li>
+                        <li>Resolví reclamos mediante validación documentaria y control de desviaciones.</li>
+                        <li>Administré el buzón de migración de créditos vehiculares.</li>
+                        <li>Fui promovido a Fiscal de Operaciones por mi desempeño.</li>
+                    </ul>
+                    <div class="company-logo bcp-logo">
+                        <img src="blogo.svg" alt="BCP Logo">
+                    </div>
+                </div>
+            </div>
+
+            <div id="more-experience-container">
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <span class="company">BANCO DE CRÉDITO DEL PERÚ</span>
+                            <span class="date">Marzo 2022 - Enero 2023</span>
+                        </div>
+                        <h4 class="position">Asesor Autorizaciones y Bloqueos</h4>
+                        <ul class="responsibilities">
+                            <li>Asistí a clientes con bloqueos en diversos canales bancarios (Credimás, tarjetas, token).</li>
+                            <li>Gestioné la entrega de artículos bancarios y tarjetas en ubicaciones internacionales.</li>
+                            <li>Realicé gestiones temporales en horario nocturno, generando informes de acciones diarias.</li>
+                        </ul>
+                        <div class="company-logo bcp-logo">
+                            <img src="blogo.svg" alt="BCP Logo">
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <span class="company">BANCO DE CRÉDITO DEL PERÚ</span>
+                            <span class="date">Diciembre 2021 - Marzo 2022</span>
+                        </div>
+                        <h4 class="position">Asesor Canales Digitales</h4>
+                        <ul class="responsibilities">
+                            <li>Brindé soporte telefónico a clientes con problemas en canales digitales (BMO, HBK).</li>
+                            <li>Educó y guié a clientes en el uso de funciones digitales.</li>
+                            <li>Atendí alertas y bloqueos de seguridad por operaciones en banca por internet.</li>
+                        </ul>
+                        <div class="company-logo bcp-logo">
+                            <img src="blogo.svg" alt="BCP Logo">
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <span class="company">WELBHELP</span>
+                            <span class="date">Agosto 2020 - Octubre 2021</span>
+                        </div>
+                        <h4 class="position">Agente Asesor telefónico / Back Office</h4>
+                        <ul class="responsibilities">
+                            <li>Ofrecí orientación y resolución de problemas técnicos, configuración y optimización de servicio.</li>
+                            <li>Utilicé múltiples aplicativos simultáneamente para analizar y resolver problemas complejos.</li>
+                            <li>Manejé situaciones desafiantes con profesionalismo, buscando siempre una experiencia positiva al cliente.</li>
+                        </ul>
+                        </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <span class="company">ATENTO - BEAT</span>
+                            <span class="date">Junio 2019 - Junio 2020</span>
+                        </div>
+                        <h4 class="position">Agente Back Office</h4>
+                        <ul class="responsibilities">
+                            <li>Asistí a usuarios (conductores y pasajeros) del aplicativo BEAT vía Zendesk.</li>
+                            <li>Brindé soporte antes, durante y después del viaje.</li>
+                            <li>Registré nuevos usuarios y verifiqué cumplimiento de requisitos.</li>
+                            <li>Resolví dudas sobre facturaciones, bonos y pagos.</li>
+                            <li>Atendí casos de emergencia de usuarios durante viajes.</li>
+                        </ul>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <button id="toggle-experience-btn" class="toggle-experience-btn">Ver más experiencias</button>
+    </section>
+
+    <section class="section" id="projects">
+        <h3>Proyectos Destacados</h3>
+        <div class="carousel-container">
+            <div class="carousel" id="carousel">
+                <div class="carousel-item" data-index="0"
+                     data-title="Automatización de Contratos para Inversionistas"
+                     data-description="Implementación de un flujo automatizado para la redacción y gestión de contratos financieros, reduciendo tiempos de horas a minutos."
+                     data-details="Diseñé un flujo en N8N para automatizar la generación de contratos. El sistema obtiene datos de PostgreSQL, personaliza los contratos según el monto, moneda y tipo de fondo de inversión, y envía correos con opciones para ver, confirmar y agendar firmas. La información se registra automáticamente vía GraphQL para un control inmediato."
+                     data-image="n8nsf.png">
+                    <h4>Automatización de Contratos</h4>
+                    <p>Optimización del proceso de generación de contratos financieros.</p>
+                    <div class="plus-icon-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="carousel-item" data-index="1"
+                     data-title="Implementación de CRM Estratégico"
+                     data-description="Liderazgo en la búsqueda y selección de un CRM para centralizar datos y mejorar la eficiencia comercial y de marketing."
+                     data-details="Participé activamente en la selección de un CRM, coordinando con proveedores y equipos internos para identificar una solución que centralizara contactos, conversaciones, categorización de leads y seguimiento de promesas. Este CRM también ofrece analítica SEO, métricas de alcance de marca y un dashboard unificado para las áreas comercial y de marketing."
+                     data-image="sdsf.png">
+                    <h4>Implementación de CRM</h4>
+                    <p>Centralización de datos para equipos comercial y de marketing.</p>
+                    <div class="plus-icon-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="carousel-item" data-index="2"
+                     data-title="Análisis de Eficiencia de Darwin AI (Comercial)"
+                     data-description="Evaluación de costos y beneficios de la IA comercial Darwin AI para optimizar su rendimiento y conversión de leads."
+                     data-details="Lideré el proyecto de mejora continua de Darwin AI, monitoreando diariamente el comportamiento de la IA en la interacción y conversión de nuevos leads. Coordiné reuniones interdiarias con stakeholders externos para identificar oportunidades de mejora y presenté informes semanales de avance y rendimiento para demostrar la eficiencia de la IA."
+                     data-image="dasf.png">
+                    <h4>Análisis Costo/Beneficio IA (Comercial)</h4>
+                    <p>Mejora continua y optimización del rendimiento de la IA comercial.</p>
+                    <div class="plus-icon-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h3 class="modal-title" id="modal-title"></h3>
+            <p class="modal-description" id="modal-description"></p>
+            <div class="modal-details">
+                <h5>Detalles del Proyecto:</h5>
+                <p id="modal-details"></p>
+            </div>
+            <div class="modal-image-container">
+                <img id="modal-image" src="" alt="Imagen del proyecto">
+            </div>
+        </div>
+        <button id="modal-prev" class="modal-nav-btn prev" aria-label="Proyecto anterior">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12 15.75 4.5" />
+            </svg>
+        </button>
+        <button id="modal-next" class="modal-nav-btn next" aria-label="Siguiente proyecto">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5 15.75 12 8.25 19.5" />
+            </svg>
+        </button>
+    </div>
+
+
+    <section class="section" id="education">
+        <h3>Educación</h3>
+        <ul>
+            <li>
+                <strong>Universidad Privada del Norte</strong><br>
+                Ingeniería industrial<br>
+                Agosto 2020 – Diciembre 2025 (pronta culminación)
+            </li>
+            <li>
+                <strong>Netzun</strong><br>
+                Especialización Data Analytics (Power BI, Power Query, Power Pivot, SQL, Access, Python, Google Cloud)<br>
+                Abril 2024
+            </li>
+            <li>
+                <strong>Zegel</strong><br>
+                Power BI | Intermedio - Avanzado<br>
+                Excel | Básico - Intermedio - Avanzado<br>
+                Febrero 2024 - Abril 2024
+            </li>
+            <li>
+                <strong>Cámara Latinoamericana de Comercio</strong><br>
+                Word Power Point | Access | Publisher | Básico - Intermedio - Avanzado<br>
+                Enero 2020 - Junio 2020
+            </li>
+        </ul>
+    </section>
+
+    <section class="section" id="skills">
+        <h3>Habilidades</h3>
+        <ul>
+            <li><strong>Análisis de datos:</strong> Power BI, Power Query, Power Pivot, SQL, Access, Python, Google Cloud, Excel</li>
+            <li><strong>Gestión financiera:</strong> Análisis de riesgos, gestión de créditos, optimización de procesos</li>
+            <li><strong>Herramientas bancarias:</strong> SMEX, EXTRA, Salesforce, Metabase</li>
+            <li><strong>Habilidades interpersonales:</strong> Liderazgo, comunicación, trabajo en equipo, resolución de problemas</li>
+            <li><strong>Ofimática:</strong> Word, PowerPoint, Access, Publisher</li>
+            <li><strong>Software adicional:</strong> Zendesk</li>
+        </ul>
+    </section>
+
+    <section class="section" id="contact">
+        <h3>Contacto y Referencias</h3>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                    <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+                    <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
+                </svg>
+                <a href="mailto:brandonromerogarcia16@gmail.com">brandonromerogarcia16@gmail.com</a>
+                <p>Envíame un correo</p>
+            </div>
+            <div class="contact-card">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                    <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clip-rule="evenodd" />
+                </svg>
+                <a href="tel:+51944085229">944085229</a>
+                <p>Llámame o escribe por WhatsApp</p>
+            </div>
+        </div>
+
+        <div class="references-section">
+            <h4>Referencias Profesionales</h4>
+            <ul class="references-list">
+                <li>
+                    <strong>Diego de la Vega</strong>
+                    <span>CTO - FINNIU</span>
+                    <a href="tel:978648994">978648994</a>
+                </li>
+                <li>
+                    <strong>Giuliana Moreno</strong>
+                    <span>Supervisora - Banco de Crédito del Perú</span>
+                    <a href="tel:960991613">960991613</a>
+                </li>
+                <li>
+                    <strong>Sally Muñoz</strong>
+                    <span>Supervisora de Operaciones - ATENTO - BEAT</span>
+                    <a href="tel:999113902">999113902</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; Brandon Romero García <span id="currentYear"></span></p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #999999;">Diseño profesional y moderno</p>
+    </footer>
+
+    <div class="floating-buttons-container">
+        <a href="https://wa.me/51944085229" target="_blank" class="floating-btn phone-btn" aria-label="Enviar mensaje de WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clip-rule="evenodd" />
+            </svg>
+        </a>
+        <button id="floating-email-btn" class="floating-btn email-btn" aria-label="Copiar correo electrónico">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+                <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
+            </svg>
+        </button>
+    </div>
+
+    <div id="copy-message" class="copy-message">
+        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.893a.75.75 0 0 0-1.06-1.06l-4.05 4.05a.75.75 0 0 0-1.06 0l-1.95-1.95a.75.75 0 1 0-1.06 1.06L9.47 14.18a.75.75 0 0 0 1.06 0l4.05-4.05Z" clip-rule="evenodd" />
+        </svg>
+        <span>¡Correo copiado!</span>
+    </div>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Toggle más experiencias
+        const toggleButton = document.getElementById('toggle-experience-btn');
+        const moreExperienceContainer = document.getElementById('more-experience-container');
+        if (toggleButton && moreExperienceContainer) {
+            // Inicialmente ocultar el contenedor "more-experience-container"
+            moreExperienceContainer.classList.remove('visible'); // Asegura que no tenga la clase 'visible' al cargar
+            toggleButton.textContent = 'Ver más experiencias'; // Asegura que el texto inicial sea "Ver más experiencias"
+
+            toggleButton.addEventListener('click', () => {
+                const isVisible = moreExperienceContainer.classList.contains('visible');
+                moreExperienceContainer.classList.toggle('visible');
+                toggleButton.textContent = isVisible ? 'Ver más experiencias' : 'Ver menos experiencias';
+            });
+        }
+
+        // Lógica del modal para proyectos - Versión mejorada
+        const modal = document.getElementById('project-modal');
+        const modalContent = modal.querySelector('.modal-content');
+        const modalClose = document.getElementById('modal-close');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const modalDetails = document.getElementById('modal-details');
+        const modalImage = document.getElementById('modal-image');
+        const projectItems = Array.from(document.querySelectorAll('.carousel-item'));
+        const prevBtn = document.getElementById('modal-prev');
+        const nextBtn = document.getElementById('modal-next');
+
+        let currentProjectIndex = 0;
+
+        function updateModalContent(index) {
+            const item = projectItems[index];
+            modalTitle.textContent = item.getAttribute('data-title');
+            modalDescription.textContent = item.getAttribute('data-description');
+            modalDetails.textContent = item.getAttribute('data-details');
+            modalImage.src = item.getAttribute('data-image');
+
+            // Eliminar clases de gradiente anteriores y añadir la nueva
+            modalContent.classList.remove('gradient-0', 'gradient-1', 'gradient-2');
+            modalContent.classList.add(`gradient-${index}`);
+        }
+
+        function updateNavButtonsPosition() {
+            if (!modal.classList.contains('active')) {
+                return; // Solo ajusta si el modal está abierto
+            }
+
+            const modalRect = modalContent.getBoundingClientRect();
+            const buttonWidth = prevBtn.offsetWidth; // Asumiendo que ambos botones tienen el mismo ancho
+            const gap = 15; // Espacio entre el modal y el botón
+
+            // Calcula la posición para el botón 'prev'
+            prevBtn.style.left = `${modalRect.left - buttonWidth - gap}px`;
+
+            // Calcula la posición para el botón 'next'
+            nextBtn.style.left = `${modalRect.right + gap}px`;
+
+            // Ajusta la posición vertical para que estén centrados con el modal
+            prevBtn.style.top = `${modalRect.top + modalRect.height / 2}px`;
+            nextBtn.style.top = `${modalRect.top + modalRect.height / 2}px`;
+        }
+
+        function openModal(index) {
+            currentProjectIndex = index;
+            updateModalContent(index);
+
+            modalContent.style.transform = 'translateY(100%)';
+            modalContent.style.opacity = '0';
+
+            void modalContent.offsetWidth;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                modalContent.style.transform = 'translateY(0)';
+                modalContent.style.opacity = '1';
+                updateNavButtonsPosition(); // Llama a esta función después de que el modal esté visible
+            }, 50);
+
+            updateNavButtons();
+        }
+
+        function closeModal() {
+            modalContent.style.transform = 'translateY(100%)';
+            modalContent.style.opacity = '0';
+
+            modalContent.addEventListener('transitionend', function handler() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                modalContent.removeEventListener('transitionend', handler);
+
+                modalContent.style.transform = '';
+                modalContent.style.opacity = '';
+            }, { once: true });
+        }
+
+        function updateNavButtons() {
+            prevBtn.style.visibility = currentProjectIndex === 0 ? 'hidden' : 'visible';
+            nextBtn.style.visibility = currentProjectIndex === projectItems.length - 1 ? 'hidden' : 'visible';
+        }
+
+        function navigateProjects(direction) {
+            let newIndex = currentProjectIndex;
+            if (direction === 'prev' && currentProjectIndex > 0) {
+                newIndex--;
+            } else if (direction === 'next' && currentProjectIndex < projectItems.length - 1) {
+                newIndex++;
+            }
+
+            if (newIndex !== currentProjectIndex) {
+                modalContent.style.opacity = '0';
+                setTimeout(() => {
+                    currentProjectIndex = newIndex;
+                    updateModalContent(currentProjectIndex);
+                    updateNavButtons();
+                    modalContent.style.opacity = '1';
+                }, 300);
+            }
+        }
+
+        projectItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                openModal(index);
+            });
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navigateProjects('prev');
+            });
+
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navigateProjects('next');
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            } else if (modal.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') {
+                    navigateProjects('prev');
+                } else if (e.key === 'ArrowRight') {
+                    navigateProjects('next');
+                }
+            }
+        });
+
+        // Asegurarse de que los botones se reposicionen en resize y scroll (si el modal está abierto)
+        window.addEventListener('resize', updateNavButtonsPosition);
+        // También podemos escuchar el scroll para modals muy largos, aunque este modal es max-height
+        modalContent.addEventListener('scroll', updateNavButtonsPosition);
+
+
+        // Lógica para copiar correo electrónico flotante
+        const floatingEmailBtn = document.getElementById('floating-email-btn');
+        const copyMessage = document.getElementById('copy-message');
+        const emailAddress = "brandonromerogarcia16@gmail.com";
+
+        floatingEmailBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(emailAddress);
+                copyMessage.classList.add('show');
+                setTimeout(() => {
+                    copyMessage.classList.remove('show');
+                }, 2000); // El mensaje desaparece después de 2 segundos
+            } catch (err) {
+                console.error('Error al copiar el correo electrónico:', err);
+                // Opcional: Podrías mostrar un mensaje de error si la copia falla.
+            }
+        });
+
+    </script>
+</body>
+</html>
