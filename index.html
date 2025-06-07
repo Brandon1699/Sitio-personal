@@ -1306,16 +1306,6 @@
                 <img id="modal-image" src="" alt="Imagen del proyecto">
             </div>
         </div>
-        <button id="modal-prev" class="modal-nav-btn prev" aria-label="Proyecto anterior">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12 15.75 4.5" />
-            </svg>
-        </button>
-        <button id="modal-next" class="modal-nav-btn next" aria-label="Siguiente proyecto">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5 15.75 12 8.25 19.5" />
-            </svg>
-        </button>
     </div>
 
 
@@ -1453,9 +1443,6 @@
         const modalDetails = document.getElementById('modal-details');
         const modalImage = document.getElementById('modal-image');
         const projectItems = Array.from(document.querySelectorAll('.carousel-item'));
-        const prevBtn = document.getElementById('modal-prev');
-        const nextBtn = document.getElementById('modal-next');
-
         let currentProjectIndex = 0;
 
         function updateModalContent(index) {
